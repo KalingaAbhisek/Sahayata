@@ -1,0 +1,32 @@
+.body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+#left-side,
+#right-side {
+    width: 47%;
+}
+
+#right-side {
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+
+.li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    border: 3px solid #ddd;
+    padding: 10px;
+}
+
+.li:hover {
+    color: #ff5733;
+}

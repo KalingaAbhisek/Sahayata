@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { signInWithPopup } from 'firebase/auth'
+import React from 'react'
+import { signInWithPopup, signInWithRedirect } from 'firebase/auth'
 import { auth,provider } from '../../firebase'
 import * as CryptoJS from 'crypto-js'
 
 const InitialHome = () => {
   const buttonHandler = ()=>{
-    signInWithPopup(auth,provider).then((data)=>{
+    signInWithRedirect(auth,provider).then((data)=>{
       const encryptedEmail = encrypt(data.user.email)
       localStorage.setItem("email",encryptedEmail)
     })
