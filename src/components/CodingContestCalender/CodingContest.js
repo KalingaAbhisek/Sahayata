@@ -13,7 +13,7 @@ const CodingContest = () => {
   useEffect(() => {
     const fetchUpcomingContests = async () => {
       try {
-        const response = await axios.get(`https://clist.by/api/v4/contest/?upcoming=true&username=adskguest&api_key=${API_KEY}`);
+        const response = await axios.get(`https://clist.by:443/api/v4/contest/?limit=1000&upcoming=true&username=adskguest&api_key=${API_KEY}`);
         const changedUTCToIST = response.data.objects.map(contest=>({
           ...contest,
           start: changeUTCToIST(contest.start),
@@ -21,10 +21,10 @@ const CodingContest = () => {
         }))
         const filteredContests = changedUTCToIST.filter(contest => {
           const contestYear = contest.start.getFullYear();
-          return contestYear >= 2024;
+          const currentDate=new Date();
+          return contestYear >= currentDate.getFullYear() && contest.start>=currentDate;
         });
         filteredContests.sort((a, b) => new Date(a.start) - new Date(b.start));
-        console.log(filteredContests)
         setContests(filteredContests);
       } catch (error) {
         console.error('Error fetching upcoming contests:', error);
