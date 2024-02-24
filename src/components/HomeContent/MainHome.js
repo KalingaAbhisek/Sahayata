@@ -4,13 +4,18 @@ import {useNavigate} from 'react-router-dom'
 
 const MainHome = () => {
   const navigate = useNavigate();
-  const handleSignOut = ()=>{
-    localStorage.removeItem("email");
-    auth.signOut()
+  const handleSignOut = async ()=>{
+    try{
+      localStorage.removeItem("email");
+      await auth.signOut();
+    }
+    catch(error){
+      console.error('Sign-Out failed:', error);
+    }
+
   }
 
   const handleClick = () => {
-    // Navigate to the '/home' route
     navigate('/contests');
   };
   return (

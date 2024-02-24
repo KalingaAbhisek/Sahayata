@@ -15,6 +15,7 @@ storage.rules
 /.firebase
 # testing
 /coverage
+# /src/components/testingnewroute
 
 # production
 /build

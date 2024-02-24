@@ -26,10 +26,10 @@ function App() {
   }
   return (
     <Routes>
-      <Route exact path="/" element={user?<Navigate to='home'/>:<InitialHome/>} />
-      <Route exact path="/home" element={user?<MainHome />:<Navigate to='' replace/>} />
-      <Route exact path="/contests" element={user?<CodingContest />:<Navigate to='' replace/>} />
-      <Route exact path="/video" element={user?<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>:<Navigate to='' replace/>} />
+      <Route path='/' element={user?<Navigate to='home' replace/>:<InitialHome/>} />
+      <Route path='/home' element={user?<MainHome />:<Navigate to='/' replace/>} />
+      <Route exact path='/contests' element={user?<CodingContest />:<Navigate to='/' replace/>} />
+      <Route path='/video' element={user?<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>:<Navigate to='/' replace/>} />
     </Routes>
   );
 }
