@@ -7,8 +7,9 @@ const app = express();
 const PORT = process.env.REACT_APP_PORT_BACKEND;
 const API_KEY = process.env.REACT_APP_CONTEST_API_KEY; // Your API key
 const API_URL = `https://clist.by:443/api/v4/contest/?limit=1000&upcoming=true&username=adskguest&api_key=${API_KEY}`
+const allowedOrigins = [`http://localhost:${process.env.port}`, 'https://sahayata-app-1.web.app'];
 
-app.use(cors({ origin: `http://localhost:${process.env.port}` }));
+app.use(cors({ origin: allowedOrigins }));
 
 app.get('/api/data', async (req, res) => {
   try {
