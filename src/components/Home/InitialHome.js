@@ -1,10 +1,10 @@
 import React from 'react'
-import { signInWithPopup, signInWithRedirect } from 'firebase/auth'
+import { signInWithPopup } from 'firebase/auth'
 import { auth,provider } from '../../firebase'
 import * as CryptoJS from 'crypto-js'
 
 const InitialHome = () => {
-  const buttonHandler = async ()=>{
+  const buttonHandler = async (e)=>{
     try{
       await signInWithPopup(auth,provider).then((data)=>{
         const encryptedEmail = encrypt(data.user.email)
@@ -15,6 +15,7 @@ const InitialHome = () => {
     catch(error){
       console.error('Google Sign-In Error:', error);
     }
+    e.stopPropagation();
   }
   const encrypt = ( plainText ) => {
     const cipherText = CryptoJS.AES.encrypt(plainText, auth.currentUser.email).toString()

@@ -24,14 +24,16 @@ function App() {
       <CircularProgress />
     </Box>
   }
+
   return (
     <Routes>
-      <Route path='/' element={user?<Navigate to='home' replace/>:<InitialHome/>} />
-      <Route path='/home' element={user?<MainHome />:<Navigate to='/' replace/>} />
-      <Route exact path='/contests' element={user?<CodingContest />:<Navigate to='/' replace/>} />
-      <Route path='/video' element={user?<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>:<Navigate to='/' replace/>} />
+      <Route exact path="/" element={user?<Navigate to='/home'/>:<InitialHome/>} />
+      <Route exact path="/home" element={<MainHome />} />
+      <Route exact path="/contests" element={<CodingContest />} />
+      <Route exact path="/video" element={<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>} />
     </Routes>
   );
 }
 
 export default App;
+
