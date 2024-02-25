@@ -1,30 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth } from '../../firebase'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
+import SignOut from '../Navigation/SignOut';
 
 const MainHome = () => {
   const navigate = useNavigate();
-  const handleSignOut = async ()=>{
-    try{
-      localStorage.removeItem("email");
-      await auth.signOut();
-    }
-    catch(error){
-      console.error('Sign-Out failed:', error);
-    }
-
-  }
-
-  const handleClick = () => {
-    navigate('/contests');
+  const handleClick = (e) => {
+    navigate('/contests', { replace: true });
+    e.stopPropagation();
   };
+  const [user, setUser] = useState(null)
+  useEffect(()=>{
+    auth.onAuthStateChanged((user)=>{
+      setUser(user);
+    })
+  },[])
+  if(!user){
+    navigate('/', { replace: true })
+  }
+  if(!user){
+    return null
+  }
   return (
     <div>
-      <div>
-      <button onClick={handleSignOut}>
-        SignOut
-      </button>
-      </div>
+      <p>Welcome, {auth.currentUser.displayName}</p>
+      <SignOut />
       <div>
       <button onClick={handleClick}>
         Coding Contest Calender
