@@ -8,10 +8,10 @@ const app = express();
 const PORT = process.env.REACT_APP_PORT_BACKEND;
 const API_KEY = process.env.REACT_APP_CONTEST_API_KEY; // Your API key
 const API_URL = `https://clist.by:443/api/v4/contest/?limit=1000&upcoming=true&username=adskguest&api_key=${API_KEY}`
-const allowedOrigins = [`http://localhost:${process.env.port}`, 'http://sahayata-app-1.web.app/','http://sahayata-app-1.firebaseapp.com/'];
+const allowedOrigins = [`http://localhost:${process.env.PORT}`, 'http://sahayata-app-1.web.app/','http://sahayata-app-1.firebaseapp.com/'];
 
 // Connect to MongoDB
-mongoose.connect(`mongodb+srv://${process.env.MongoDBuserName}:${process.env.MongoDBpassword}@${process.env.MongoDBappName}.zhsxrdu.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MongoDBappName}`, {
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@${process.env.MONGO_DB_APP_NAME}.zhsxrdu.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGO_DB_APP_NAME}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
