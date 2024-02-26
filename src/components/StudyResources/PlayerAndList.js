@@ -17,7 +17,7 @@ const PlayerAndList = (props) => {
       const fetchPlaylistVideos = async () => {
         try {
           const playlistId = props.playlistId;
-          const apiKey = 'AIzaSyC4sxrSOOZ5pvBe0tv5DzTI-tNOfgWT8qI';
+          const apiKey = process.env.YOUTUBE_API_KEY;
           const response = await axios.get(
             `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${apiKey}&maxResults=50`
           );
