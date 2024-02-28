@@ -51,7 +51,7 @@ const CodingContest = () => {
       return
     }
     try {
-      const response = await axios.get(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/api/data`);
+      const response = await axios.get('api/data');
       const changedUTCToIST = response.data.map(contest=>({
         ...contest,
         start: changeUTCToIST(contest.start),
