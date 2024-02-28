@@ -33,7 +33,7 @@ const contestSchema = new mongoose.Schema({
 
 const Contest = mongoose.model('Contest', contestSchema);
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors());
 
 cron.schedule('*/10 * * * *', async () => {
   try {
