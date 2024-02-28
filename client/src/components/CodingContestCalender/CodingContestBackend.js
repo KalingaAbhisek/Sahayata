@@ -9,7 +9,7 @@ const functions = require('firebase-functions')
 const PORT = process.env.REACT_APP_PORT_BACKEND;
 const API_KEY = process.env.REACT_APP_CONTEST_API_KEY; // Your API key
 const API_URL = `https://clist.by:443/api/v4/contest/?limit=1000&upcoming=true&username=adskguest&api_key=${API_KEY}`
-const allowedOrigins = [ 'http://localhost:3000','https://sahayata-app-1.web.app/','https://sahayata-app-1.firebaseapp.com/','https://us-central1-sahayata-app-1.cloudfunctions.net/'];
+// const allowedOrigins = [ 'http://localhost:3000','https://sahayata-app-1.web.app/','https://sahayata-app-1.firebaseapp.com/','https://us-central1-sahayata-app-1.cloudfunctions.net/'];
 
 // Connect to MongoDB
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@${process.env.MONGO_DB_APP_NAME}.zhsxrdu.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGO_DB_APP_NAME}`, {
@@ -34,7 +34,7 @@ const contestSchema = new mongoose.Schema({
 
 const Contest = mongoose.model('Contest', contestSchema);
 
-app.use(cors({origin: allowedOrigins}));
+app.use(cors({ origin: true }));
 
 cron.schedule('*/10 * * * *', async () => {
   try {
