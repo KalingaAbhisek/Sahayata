@@ -14,8 +14,7 @@ const CodingContest = () => {
   // const [apiRequested, setapiRequested] = useState(false);
   const changeUTCToIST = (utcDateTime)=>{
     // const utcTime = new Date(utcDateTime).getTime();
-    const istDateString = utcDateTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata',
-    hour12: true, });
+    const istDateString = utcDateTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata', });
     const istDate = new Date(istDateString);
     // const istOffset = 5.5 * 60 * 60 * 1000;
     // const istTime = utcTime + istOffset;
@@ -55,7 +54,7 @@ const CodingContest = () => {
       return
     }
     try {
-      const response = await axios.get(process.env.BACKEND_URL);
+      const response = await axios.get('https://us-central1-sahayata-app-1.cloudfunctions.net/app/api/data');
       const changedUTCToIST = response.data.map(contest=>({
         ...contest,
         start: changeUTCToIST(contest.start),
@@ -105,8 +104,8 @@ const CodingContest = () => {
         data.map(contest => (
           <li key={contest._id}>
             <a target='_blank' rel="noreferrer" href={contest.href}><strong>{contest.event}</strong></a>
-            <p>Start Time: {new Date(contest.start).toLocaleString()} IST</p>
-            <p>End Time: {new Date(contest.end).toLocaleString()} IST</p>
+            <p>Start Time: {new Date(contest.start).toLocaleString('en-US', {hour12: true})} IST</p>
+            <p>End Time: {new Date(contest.end).toLocaleString('en-US', {hour12: true})} IST</p>
             <p>Platform: {contest.resource}</p>
           </li>
         ))}
