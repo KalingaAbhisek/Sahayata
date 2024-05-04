@@ -32,6 +32,7 @@ function App() {
       <Route exact path="/contests" element={<CodingContest />} />
       <Route exact path="/video" element={<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>} />
       <Route exact path="/video/dsa" element={<PlayerAndList playlistId="PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn"/>} />
+      <Route path="*" element={<Navigate to='/'/>} />
     </Routes>
   );
 }
