@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import './PlayerAndList.css'
+import './PlayerAndList.css';
+import {useNavigate} from 'react-router-dom';
 import YouTube from 'react-youtube';
+import {auth} from '../../firebase';
 
 const PlayerAndList = (props) => {
     const [videos, setVideos] = useState([]);
@@ -13,26 +15,46 @@ const PlayerAndList = (props) => {
         height: '472px',
         width: '100%',
       };
+      const [user, setUser] = useState(null)
+      const navigate = useNavigate();
+      useEffect(() => {
+        auth.onAuthStateChanged((user)=>{
+          setUser(user);
+        })
+      }, []);
+
     useEffect(() => {
-      const fetchPlaylistVideos = async () => {
-        try {
-          const playlistId = props.playlistId;
-          const apiKey = process.env.YOUTUBE_API_KEY;
-          const response = await axios.get(
-            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${apiKey}&maxResults=50`
-          );
-          console.log(response)
-          setVideos(response.data.items);
-          if (response.data.items.length > 0) {
-            setCurrentVideo(response.data.items[0].snippet.resourceId.videoId);
-          }
-        } catch (error) {
-          console.error('Error fetching playlist videos:', error);
+      if(user)
+        fetchPlaylistVideos();
+    }, [user]);
+
+    if(!user){
+      navigate('/', { replace: true })
+      return 
+    }
+
+    const fetchPlaylistVideos = async () => {
+      if(!user){
+        return
+      }
+      const playlistId = props.playlistId;
+      try {
+        const allVideos = [];
+        const allVideoArrays = await axios.post('https://us-central1-sahayata-app-1.cloudfunctions.net/app/api/youtube',{playlistId});
+        allVideoArrays.data.map((videos)=>{
+          videos.items.map((data)=>{
+            allVideos.push(data);
+          })
+        })
+        setVideos(allVideos);
+        if (allVideos.length > 0) {
+          setCurrentVideo(allVideos[0].snippet.resourceId.videoId);
         }
-      };
-  
-      fetchPlaylistVideos();
-    }, []);
+      } catch (error) {
+        console.error('Error fetching playlist videos:', error);
+      }
+    };
+
   return (
     <div className='body'>
         <h1>

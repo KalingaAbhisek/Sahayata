@@ -41,7 +41,7 @@ cron.schedule('*/10 * * * *', async () => {
     const response = await axios.get(API_URL);
     const responseData = response.data.objects;
 
-    // Process the response and save it to MongoDB
+     // Process the response and save it to MongoDB
     await Contest.deleteMany();
     console.log('Previous data from MongoDB is deleted');
     await Contest.insertMany(responseData);
@@ -51,7 +51,7 @@ cron.schedule('*/10 * * * *', async () => {
   }
 });
 
-// Retrieve data from MongoDB
+//Retrieve data from MongoDB
 app.get('/api/data', async (req, res) => {
   try {
     const contests = await Contest.find().lean();
@@ -61,6 +61,35 @@ app.get('/api/data', async (req, res) => {
     res.status(500).send('Error retrieving contests');
   }
 });
+
+app.post('/api/youtube',async(req,res)=>{
+  try{
+    const {playlistId}= req.body;
+    console.log('PlayListId fetched', playlistId)
+    let allVideos = [];
+    let nextPageToken = null;
+    do{
+      const resp = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${process.env.YOUTUBE_API_KEY}`,{
+        params: {
+          part: 'snippet',
+          maxResults: 50,
+          playlistId: playlistId,
+          key: process.env.YOUTUBE_API_KEY,
+          pageToken: nextPageToken,
+        }
+      });
+      allVideos.push(resp.data);
+      // allVideos=allVideos.concat(resp.data.items)
+      nextPageToken = resp.data.nextPageToken;
+    }
+    while(nextPageToken);
+    res.json(allVideos);
+  }
+  catch (error) {
+    console.error('Error retrieving youtube api:', error);
+    res.status(500).send('Error retrieving youtube api');
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
