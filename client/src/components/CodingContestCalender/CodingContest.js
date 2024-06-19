@@ -1,117 +1,81 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {auth} from '../../firebase';
+import React, { useState, useEffect, memo } from 'react';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import './CodingContestCSS.css';
 import SignOut from '../Navigation/SignOut';
-import {useNavigate} from 'react-router-dom'
-import { Box,CircularProgress } from '@mui/material';
 
 const CodingContest = () => {
-  const [data, setData] = useState([]);
-  const [initialLoad, setInitialLoad] = useState(true);
-  // const API_KEY = process.env.REACT_APP_CONTEST_API_KEY;
-  // const API_URL = `https://clist.by:443/api/v4/contest/?limit=1000&upcoming=true&username=adskguest&api_key=${API_KEY}`
-  // const [contests, setContests] = useState([]);
-  // const [apiRequested, setapiRequested] = useState(false);
-  const changeUTCToIST = (utcDateTime)=>{
-    // const utcTime = new Date(utcDateTime).getTime();
-    const istDateString = utcDateTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata', });
-    const istDate = new Date(istDateString);
-    // const istOffset = 5.5 * 60 * 60 * 1000;
-    // const istTime = utcTime + istOffset;
-    
-    // const istDateTime = new Date(istTime)
-    return istDate;
-  }
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+  const [contests, setContests] = useState([]);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
-    auth.onAuthStateChanged((user)=>{
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
-    })
-  }, []);
-  // useEffect(()=>{
-  //   let interval;
-  //   if (user) {
-  //     fetchUpcomingContests();
-  //     interval = setInterval(fetchUpcomingContests, 10 * 60 * 1000);
-  //   } else {
-  //     clearInterval(interval);
-  //   }
-  //   return () => clearInterval(interval); 
-  // },[user])
-  
-  useEffect(()=>{
-    getCachedData();
-    const cachedDataTimestamp = localStorage.getItem('cachedDataTimestamp');
-    const currentTime = new Date().getTime();
-    if (user && (!cachedDataTimestamp || (currentTime - cachedDataTimestamp) > 10 * 60 * 1000)) {
-      fetchUpcomingContests();
-    }
-  },[user])
-
-  const fetchUpcomingContests = async () => {
-    if(!user){
-      return
-    }
-    try {
-      const response = await axios.get('https://us-central1-sahayata-app-1.cloudfunctions.net/app/api/data');
-      const changedUTCToIST = response.data.map(contest=>({
-        ...contest,
-        start: changeUTCToIST(contest.start),
-        end: changeUTCToIST(contest.end)
-      }))
-      const filteredContests = changedUTCToIST.filter(contest => {
-        const contestYear = contest.start.getFullYear();
-        const currentDate=new Date();
-        return contestYear >= currentDate.getFullYear() && contest.start>=currentDate;
-      });
-      filteredContests.sort((a, b) => new Date(a.start) - new Date(b.start));
-      if(initialLoad){
-        <Box mt={5} display='flex' justifyContent='center'>
-        <CircularProgress />
-      </Box>
-        setData(filteredContests);
-        setInitialLoad(false);
+      if (!user) {
+        navigate('/', { replace: true });
       }
-      localStorage.setItem('cachedContestData', JSON.stringify(filteredContests));
-      localStorage.setItem('cachedDataTimestamp',new Date().getTime())
-    } 
-    
-    catch (error) {
-      console.error('Error fetching upcoming contests:', error);
-    }
-  }; 
+    });
+    return () => unsubscribe();
+  }, [navigate]);
 
-  const getCachedData = () => {
-    const cachedData = localStorage.getItem('cachedContestData');
-    if (user && cachedData) {
-      setData(JSON.parse(cachedData));
-    }
-  };
+  useEffect(() => {
+    const fetchContests = async () => {
+      try {
+        const response = await fetch('https://sahayata-backend-b12m.onrender.com/api/data');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const now = new Date();
 
-  if(!user){
-    navigate('/', { replace: true })
-    return 
-  }
+        const parseDate = (dateString) => {
+          const cleanedDateString = dateString.replace(/(\d+)(st|nd|rd|th)/, '$1');
+          return new Date(cleanedDateString);
+        };
+
+        const upcomingContests = data.filter(contest => parseDate(contest.start) >= now);
+        upcomingContests.sort((a, b) => parseDate(a.start) - parseDate(b.start));
+        setContests(upcomingContests);
+      } catch (error) {
+        setError('Failed to fetch data. Please try again later.');
+        console.log('Error fetching data:', error);
+      }
+    };
+
+    fetchContests();
+  }, []);
 
   return (
-    <div>
-      <h2>Upcoming Contests</h2>
-      <SignOut />
-      <ul>
-        {
-        
-        data.map(contest => (
-          <li key={contest._id}>
-            <a target='_blank' rel="noreferrer" href={contest.href}><strong>{contest.event}</strong></a>
-            <p>Start Time: {new Date(contest.start).toLocaleString('en-US', {hour12: true})} IST</p>
-            <p>End Time: {new Date(contest.end).toLocaleString('en-US', {hour12: true})} IST</p>
-            <p>Platform: {contest.resource}</p>
-          </li>
+    <div className='coding-contest'>
+      <header className='coding-contest-header'>
+        <div className="header-left-cc">
+          <h1 className='coding-contest-h1'><a className="coding-contest-a" href="/"><b>SAHAYATA</b></a></h1>
+          <p className='coding-contest-p'>A comprehensive portal.</p>
+        </div>
+        <nav className="header-right-cc">
+          <ul className='coding-contest-ul'>
+            <li className='coding-contest-li'><a className="coding-contest-a" href="/">Home</a></li>
+            <SignOut />
+          </ul>
+        </nav>
+      </header>
+      <div className="containercc" id="contestSchedule">
+        {error && <div>{error}</div>}
+        {contests.map((contest, index) => (
+          <div key={index} className="cardcc">
+            <div className="card-title-cc">{contest.event}</div>
+            <div className="card-details-cc">
+              <div>Start: {contest.start}</div>
+              <div>End: {contest.end}</div>
+            </div>
+            <a className="coding-contest-a" href={contest.href} target="_blank" rel="noopener noreferrer">{contest.host}</a>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-export default CodingContest;
+export default memo(CodingContest);

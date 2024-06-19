@@ -16,11 +16,7 @@ const SignOut = () => {
     
       }
   return (
-    <div>
-    <button onClick={handleSignOut}>
-      SignOut
-    </button>
-    </div>
+    <li><a onClick={(e)=>handleSignOut(e)} href="/">Logout</a></li>
   )
 }
 
