@@ -1,32 +1,126 @@
-.body {
+.bodyPlayerAndList {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.playerandlistheader {
+    background-color: #eeeeee;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#left-side,
-#right-side {
-    width: 47%;
+.header-left-pl .plli {
+    color: #423FE5;
+    margin: 0;
+    font-size: 32px;
 }
 
-#right-side {
-    overflow-y: auto;
-    max-height: 600px;
+.header-left-pl .plli .pla {
+    text-decoration: none;
+    color: #423FE5;
 }
 
-
-.li {
-    cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 20px;
+.header-left-pl .plp {
     color: #333;
-    transition: color 0.3s ease-in-out;
-    border: 3px solid #ddd;
-    padding: 10px;
+    margin: 5px 0 0;
+    font-size: 18px;
 }
 
-.li:hover {
-    color: #ff5733;
+.header-right-pl .plul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.header-right-pl .plul .plli {
+    margin-right: 40px;
+}
+
+.header-right-pl .plul .plli .pla {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+
+.header-right-pl .plul .plli .pla:hover {
+    color: #423FE5;
+}
+
+.containerpll {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.description {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.description .plli {
+    font-size: 2.5em;
+    color: #423FE5;
+    margin-bottom: 20px;
+}
+
+.text-container {
+    margin-bottom: 20px;
+}
+
+.text-container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #423FE5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pl-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.pl-col {
+    flex: 1;
+}
+
+.topic-pl {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.topic-pl:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.playerandlistfooter {
+    background-color: #eeeeee;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.playerandlistfooter .plp {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }

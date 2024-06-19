@@ -1,0 +1,261 @@
+.mainhomediv {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eeeeee;
+    color: #000000;
+}
+
+.mainhomeheader {
+    background-color: #eeeeee;
+    color: #fff;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left-mh .mainh1 .mainanch {
+    text-decoration: none;
+    color: #423FE5;
+}
+
+.header-left-mh .mainh1 {
+    color: #423FE5;
+    margin: 0;
+    font-size: 32px;
+}
+
+.header-left-mh .mainp {
+    color: #333;
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+.mainhomemaincomp {
+    width: 100%;
+    max-width: 1307px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.button-section-mh {
+    padding: 2px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.button-container-mh {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    gap: 90px;
+    max-width: 530px;
+    width: 100%;
+}
+
+.btn-mh {
+    padding: 20px;
+    font-size: 16px;
+    background-color: #423FE5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 250px;
+}
+
+.btn-mh:hover {
+    background-color: #357ae8;
+}
+
+.notice-board-container {
+    height: 400px;
+    width: 100%;
+    max-width: 600px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    background: #fff;
+    border-radius: 10px;
+    flex: 1;
+    position: relative;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    z-index: 10;
+}
+
+.sticky-header .mainh2 {
+    margin: 0;
+    padding: 10px;
+    font-size: 25px;
+    color: #333;
+}
+
+.notice-item {
+    list-style-type: none;
+    position: relative;
+    padding: 10px 10px 10px 30px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.notice-item::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #423FE5;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.notice-item .mainanch {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.notice-item:hover {
+    background: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.notice-item .mainanch:hover {
+    color: #423FE5;
+}
+
+.jobs-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #284ea7;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    animation: pulse 1.5s infinite;
+}
+
+.jobs-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(40, 78, 167, 0.5);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(40, 78, 167, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(40, 78, 167, 0.5);
+    }
+}
+
+.bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+.bottom-btn {
+    padding: 12px;
+    font-size: 20px;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bottom-btn:hover {
+    color: #357ae8;
+}
+
+.mainhomesignoutbtn{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: 40px;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    color: #423FE5;
+}
+
+@media (max-width: 768px) {
+    .mainhomeheader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-section-mh {
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .button-container-mh {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .notice-board-container {
+        width: 100%;
+        max-width: none;
+        margin-top: 20px;
+    }
+
+    .jobs-button {
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .bottom-buttons {
+        bottom: 10px;
+        left: 10px;
+        flex-direction: row;
+    }
+
+    .bottom-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+

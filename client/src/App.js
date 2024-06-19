@@ -5,12 +5,13 @@ import MainHome from './components/HomeContent/MainHome';
 import { useEffect, useState } from 'react';
 import { auth } from './firebase';
 import { Box,CircularProgress } from '@mui/material';
-import PlayerAndList from './components/StudyResources/PlayerAndList';
 import CodingContest from './components/CodingContestCalender/CodingContest';
+import PlayerView from './components/StudyResources/PlayerView';
+import SemesterMaterials from './components/Semester Materials/SemesterMaterials';
+import Roadmap from './components/roadmaps/Roadmap';
 
 function App() {
-  const {pathname} = useLocation();
-  const [initialLoad, setInitialLoad] = useState(pathname === '/' || pathname === '/home' || pathname === '/contests' || pathname === '/video' || pathname === '/video/dsa'? true: false);
+  const [initialLoad, setInitialLoad] = useState(true);
   const [user, setUser] = useState(null)
   useEffect(()=>{
     auth.onAuthStateChanged((user)=>{
@@ -18,7 +19,6 @@ function App() {
       setInitialLoad(false)
     })
   },[])
-
   if(initialLoad){
     <Box mt={5} display='flex' justifyContent='center'>
       <CircularProgress />
@@ -27,11 +27,14 @@ function App() {
 
   return (
     <Routes>
-      <Route exact path="/" element={user?<Navigate to='/home'/>:<InitialHome/>} />
+      <Route exact path="/" element={<InitialHome/>} />
       <Route exact path="/home" element={<MainHome />} />
       <Route exact path="/contests" element={<CodingContest />} />
-      <Route exact path="/video" element={<PlayerAndList playlistId="PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY"/>} />
-      <Route exact path="/video/dsa" element={<PlayerAndList playlistId="PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn"/>} />
+      <Route path="/aptitude" element={<PlayerView />} />
+      <Route path="/core-subjects" element={<PlayerView />} />
+      <Route exact path="/roadmaps" element={<Roadmap />} />
+      <Route exact path="/semester-materials" element={<SemesterMaterials />} />
+      <Route path="/dsa" element={<PlayerView />} />
       <Route path="*" element={<Navigate to='/'/>} />
     </Routes>
   );

@@ -1,0 +1,149 @@
+.roadmap {
+    background-color: #eeeeee;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+    color: #000000;
+}
+
+.site-header {
+    background-color: #eeeeee;
+    color: #fff;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 5px auto;
+}
+
+.header-left-roadmap .site-title-roadmap {
+    color: #423FE5;
+    margin: 0;
+    font-size: 32px;
+}
+
+.header-left-roadmap .site-title-roadmap a {
+    text-decoration: none;
+    color: #423FE5;
+}
+
+.header-left-roadmap .site-description-roadmap {
+    color: #333;
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+.header-right-roadmap {
+    display: flex;
+    align-items: center;
+}
+
+.header-right-roadmap .navigation-list-roadmap {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.header-right-roadmap .navigation-item-roadmap {
+    margin-right: 40px;
+}
+
+.header-right-roadmap .navigation-link-roadmap {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+
+.header-right-roadmap .navigation-link-roadmap:hover {
+    color: #007bff;
+}
+
+header .header-right button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+h2.roadmap-heading-roadmap {
+    text-align: center;
+    color: #423FE5;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -10px;
+}
+
+.col-roadmap {
+    width: calc(33.333% - 20px);
+    margin: 10px;
+}
+
+.box-roadmap {
+    margin: 5px;
+    padding: 20px;
+    background-color: #423FE5;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.box-roadmap:hover {
+    text-decoration: none;
+    background-color: #342DA8;
+}
+
+.site-footer {
+    background-color: #eeeeee;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.site-footer .footer-text {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .col-roadmap {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .col-roadmap {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right-roadmap .navigation-list-roadmap {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header-right-roadmap .navigation-item-roadmap {
+        margin-top: 10px;
+    }
+}

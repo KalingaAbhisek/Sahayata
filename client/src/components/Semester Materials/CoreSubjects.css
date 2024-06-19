@@ -1,0 +1,151 @@
+.coresubjects {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.coresubjectsheader {
+    background-color: #eeeeee;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header-left-cs .cs-h1 {
+    color: #423FE5;
+    margin: 0;
+    font-size: 32px;
+}
+
+.header-left-cs .cs-h1 .cs-a {
+    text-decoration: none;
+    color: #423FE5;
+}
+
+.header-left-cs .cs-p {
+    color: #333;
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+.nav-cs .cs-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-cs .cs-ul .cs-li {
+    margin-right: 40px;
+}
+
+.nav-cs .cs-ul .cs-li .cs-a {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+.nav-cs .cs-ul .cs-li .cs-a:hover {
+    color: #423FE5;
+}
+
+.main-cs {
+    padding: 20px;
+}
+
+.container-cs {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.semester-materials .cs-h1 {
+    font-size: 2.5em;
+    color: #423FE5;
+    margin-bottom: 60px;
+    text-align: start;
+}
+
+.card-group-cs {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card-cs {
+    width: calc(33.33% - 20px);
+    border: none;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.card-cs:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-cs img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #423FE5;
+}
+
+.card-body-cs {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-cs .cs-h3 {
+    color: #423FE5;
+    margin-bottom: 10px;
+}
+
+.card-cs .cs-p {
+    color: #333;
+}
+
+.btn-primary-cs {
+    background-color: #423FE5;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.btn-primary-cs:hover {
+    background-color: #423FE5;
+}
+
+.footer-cs {
+    background-color: #eeeeee;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer-cs .cs-p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+@media (max-width: 1024px) {
+    .card-cs {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .card-cs {
+        width: calc(100% - 20px);
+    }
+}
