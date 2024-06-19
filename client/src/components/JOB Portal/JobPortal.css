@@ -1,0 +1,94 @@
+.jobportal {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eeeeee;
+    color: #333;
+}
+
+.container-job {
+    max-width: 1540px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#backButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover {
+    background-color: #007bff;
+}
+
+#searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
+}
+
+.job {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.job img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.job h2 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.job a {
+    display: inline-block;
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.job a:hover {
+    background-color: #218838;
+}
