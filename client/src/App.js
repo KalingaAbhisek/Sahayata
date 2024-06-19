@@ -9,6 +9,7 @@ import CodingContest from './components/CodingContestCalender/CodingContest';
 import PlayerView from './components/StudyResources/PlayerView';
 import SemesterMaterials from './components/Semester Materials/SemesterMaterials';
 import Roadmap from './components/roadmaps/Roadmap';
+import JobPortal from './components/JOB Portal/JobPortal';
 
 function App() {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -33,6 +34,7 @@ function App() {
       <Route path="/aptitude" element={<PlayerView />} />
       <Route path="/core-subjects" element={<PlayerView />} />
       <Route exact path="/roadmaps" element={<Roadmap />} />
+      <Route exact path="/jobs" element={<JobPortal />} />
       <Route exact path="/semester-materials" element={<SemesterMaterials />} />
       <Route path="/dsa" element={<PlayerView />} />
       <Route path="*" element={<Navigate to='/'/>} />

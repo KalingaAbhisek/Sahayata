@@ -153,22 +153,22 @@ const InitialHome = React.memo(() => {
             <div className="team-member">
                 <img src={logo} alt="Kalinga Abhisek" />
                 <h3 className="h3-ih">Kalinga Abhisek</h3>
-                <p className="inip">CSE, Final Year</p>
+                <p className="inip">SDE-I at TraceLink</p>
             </div>
             <div className="team-member">
                 <img src={logo1} alt="Pradosh Panda" />
                 <h3 className="h3-ih">Pradosh Panda</h3>
-                <p className="inip">CSE, Final Year</p>
+                <p className="inip">System Engineer at TCS</p>
             </div>
             <div className="team-member">
                 <img src={logo3} alt="Rishikesh Beura" />
                 <h3 className="h3-ih">Rishikesh Beura</h3>
-                <p className="inip">CSE, Final Year</p>
+                <p className="inip">UI/UX Designer, Cyber Security Specialist</p>
             </div>
             <div className="team-member">
                 <img src={logo2} alt="Pratush Ranjan Parida" />
                 <h3 className="h3-ih">Pratyush Ranjan Parida</h3>
-                <p className="inip">CSE, Final Year</p>
+                <p className="inip">Software Engineer in Test</p>
             </div>
         </div>
     </section>
