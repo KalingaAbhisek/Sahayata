@@ -20,7 +20,6 @@ env.json
 # /src/components/testingnewroute
 
 # production
-/build
 
 # misc
 .DS_Store
